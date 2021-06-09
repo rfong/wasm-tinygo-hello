@@ -29,15 +29,15 @@ go get -u github.com/shurcooL/goexec
 
 Compile project to WASM.
 ```
-GOOS=js GOARCH=wasm tinygo build -o main.wasm
+make build
 ```
 
 Run a web server.
 ```
-goexec 'http.ListenAndServe(`:8080`, http.FileServer(http.Dir(`.`)))'
+make serve
 ```
-(You _must_ use a server that's aware of the WASM MIME type. 
-A Python `http.server` won't work.)
+Note that we use `goexec` to serve (see `Makefile`) because you _must_ use a
+server that's aware of the WASM MIME type. A Python `http.server` won't work.
 
 Go to `localhost:8080` in your browser. If all has gone well, you should see 
 "hello webassembly!" in the JS console.
