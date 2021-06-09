@@ -5,10 +5,12 @@
 
 The following instructions assume OSX 10.13+.
 
-Install Golang (1.13+) and TinyGo if you don't already have them. 
+Install Golang and TinyGo if you don't already have them. 
 ```
-brew install go@1.13 tinygo
+brew install go tinygo
 ```
+Golang 1.13 is the minimum version needed to support TinyGo. Check `go version` 
+to make sure you have it.
 
 Copy `tinygo`'s version of `wasm_exec.js` into your project root. 
 This file must match the binary you use to build your WASM.
