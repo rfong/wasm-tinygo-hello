@@ -42,6 +42,7 @@ Go to `localhost:8080` in your browser. If all has gone well, you should see
 
 
 ## Resources
+- [Lin Clark's illustrated intro to WASM](https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/)
 - [Golang<>WASM quickstart](https://github.com/golang/go/wiki/WebAssembly)
 - [Very helpful debug journal of a TinyGo<>WASM setup | Mariano Gappa](https://marianogappa.github.io/software/2020/04/01/webassembly-tinygo-cheesse/)
 
