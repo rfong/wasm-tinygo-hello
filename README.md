@@ -1,5 +1,10 @@
 # TinyGo <> WASM "hello world" webapp
------
+
+### What is this?
+
+A minimal setup example where TinyGo is compiled to a WASM executable
+runnable in the browser. We demonstrate a Go function export which can be 
+called from JS, and a JS function export which can be called from Go.
 
 ## Dependencies
 
