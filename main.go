@@ -15,8 +15,8 @@ func main() {
 func add(x, y int) int
 
 // This function is exported to JavaScript, so it can be called using
-// exports.multiply() in JavaScript. The following line tells the build to
-// export this function to `wasm.exports`.
+// exports.multiply() in JavaScript. The `//export func` line tells the build
+// to export this function to `wasm.exports`.
 //export multiply
 func multiply(x, y int) int {
 	return x * y

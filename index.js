@@ -3,6 +3,7 @@
 
 const go = new Go(); // Defined in wasm_exec.js
 const WASM_URL = 'main.wasm';
+var wasm;
 
 // Providing the environment object, used in WebAssembly.instantiateStreaming.
 // This part goes after "const go = new Go();" declaration.
@@ -11,19 +12,13 @@ go.importObject.env['main.add'] = function(x, y) {
   return x + y
 };
 
-// A function to run once `wasm` is loaded
-function foo() {
-  // Calling a function exported from Go to JS
-  console.log('using Go-defined function to multiply two numbers:', wasm.exports.multiply(5, 3));
-}
-
-var wasm;
-
+// A function to run after WebAssembly is instantiated.
 function postInstantiate(obj) {
-	console.log(go.importObject);
   wasm = obj.instance;
   go.run(wasm);
-	foo();
+
+  // Calling a function exported from Go to JS
+  console.log('using Go-defined function to multiply two numbers:', wasm.exports.multiply(5, 3));
 }
 
 if ('instantiateStreaming' in WebAssembly) {
