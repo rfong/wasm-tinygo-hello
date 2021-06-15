@@ -42,6 +42,13 @@ server that's aware of the WASM MIME type. A Python `http.server` won't work.
 Go to `localhost:8080` in your browser. If all has gone well, you should see 
 "hello webassembly!" in the JS console.
 
+### Troubleshooting
+
+If in doubt, triple-check that the version of `wasm_exec.js` in your local 
+filesystem and loaded in your browser is as expected. A mismatched 
+`wasm_exec.js` seemed to be the cause of most issues I ran into while setting 
+up.
+
 
 ## Resources
 - [Lin Clark's illustrated intro to WASM](https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/)
