@@ -6,14 +6,11 @@ const WASM_URL = 'main.wasm';
 
 // Providing the environment object, used in WebAssembly.instantiateStreaming.
 // This part goes after "const go = new Go();" declaration.
-/*go.importObject.env = {
-	// This function can be used in Go.
-  'main.add': function(x, y) {
-    return x + y
-  }
-  // ... other functions
-}
-*/
+// This function can be used in Go.
+go.importObject.env['main.add'] = function(x, y) {
+  return x + y
+};
+
 // A function to run once `wasm` is loaded
 function foo() {
   // Calling a function exported from Go to JS
@@ -22,21 +19,20 @@ function foo() {
 
 var wasm;
 
+function postInstantiate(obj) {
+	console.log(go.importObject);
+  wasm = obj.instance;
+  go.run(wasm);
+	foo();
+}
+
 if ('instantiateStreaming' in WebAssembly) {
-  WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
-    wasm = obj.instance;
-    go.run(wasm);
-		foo();
-  })
+  WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(postInstantiate);
 } else {
   fetch(WASM_URL).then(resp =>
     resp.arrayBuffer()
   ).then(bytes =>
-    WebAssembly.instantiate(bytes, go.importObject).then(function (obj) {
-      wasm = obj.instance;
-      go.run(wasm);
-			foo();
-    })
+    WebAssembly.instantiate(bytes, go.importObject).then(postInstantiate)
   )
 }
 
